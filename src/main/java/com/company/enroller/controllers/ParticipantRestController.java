@@ -22,10 +22,9 @@ public class ParticipantRestController {
 	public ResponseEntity<?> getParticipants(
 			@RequestParam(required = false) String sortBy,
 			@RequestParam(required = false) String sortOrder,
-			@RequestParam(required = false) String key
-	) {
+			@RequestParam(required = false) String key) {
 		Collection<Participant> participants = participantService.getAll(sortBy, sortOrder, key);
-		return new ResponseEntity<>(participants, HttpStatus.OK);
+		return ResponseEntity.ok(participants);
 	}
 
 

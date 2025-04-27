@@ -5,8 +5,9 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
-import java.util.stream.Collectors;
+
 
 @Component("participantService")
 public class ParticipantService {
@@ -22,8 +23,14 @@ public class ParticipantService {
         String hql = buildHqlQuery(sortBy, sortOrder, key);
         Query<Participant> query = connector.getSession().createQuery(hql, Participant.class);
         setQueryParameters(query, key);
-        return query.getResultList();
+        Collection<Participant> participants = query.getResultList();
+
+        if (participants.isEmpty()) {
+            throw new EntityNotFoundException("No participants found.");
+        }
+        return participants;
     }
+
 
     public Participant findByLogin(String login) {
         return connector.getSession().get(Participant.class, login);
