@@ -1,0 +1,43 @@
+### Get all participants
+GET http://localhost:8080/participants
+
+### Get all participants sorted by login descending
+GET http://localhost:8080/participants?sortBy=login&sortOrder=DESC
+
+### Try wrong sortOrder (expect error)
+GET http://localhost:8080/participants?sortBy=login&sortOrder=DESCSSS
+
+### Get participants filtered by key
+GET http://localhost:8080/participants?key=piotr
+
+### Get participants filtered only by login key
+GET http://localhost:8080/participants?key=login
+
+### Get all meetings
+GET http://localhost:8080/meetings
+
+### Get meeting by id (example id 1)
+GET http://localhost:8080/meetings/2
+
+### Create a new meeting
+POST http://localhost:8080/meetings
+Content-Type: application/json
+
+{
+  "title": "New Meeting Title",
+  "description": "Description of the new meeting",
+  "date": "2025-04-30"
+}
+
+### Update meeting by id (example id 1)
+PUT http://localhost:8080/meetings/2
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "description": "Updated Description",
+  "date": "2025-05-01"
+}
+
+### Delete meeting by id (example id 1)
+DELETE http://localhost:8080/meetings/1
