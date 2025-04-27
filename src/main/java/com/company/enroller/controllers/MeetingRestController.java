@@ -63,5 +63,4 @@ public class MeetingRestController {
         meetingService.update(meeting);
         return new ResponseEntity<>(meeting, HttpStatus.OK);
     }
-
 }
