@@ -43,5 +43,4 @@ public class MeetingService {
 		session.update(meeting);
 		session.getTransaction().commit();
 	}
-
 }

@@ -41,3 +41,28 @@ Content-Type: application/json
 
 ### Delete meeting by id (example id 1)
 DELETE http://localhost:8080/meetings/1
+
+###
+GET http://localhost:8080/meetings/2/participants
+
+###
+POST http://localhost:8080/meetings/2/participants
+Content-Type: application/json
+
+{
+  "login": "user_piotr"
+}
+###
+DELETE http://localhost:8080/meetings/2/participants/user_piotr
+###
+
+### Create a new participant
+POST http://localhost:8080/participants
+Content-Type: application/json
+
+{
+  "login": "nowy_user",
+  "password": "tajne_haslo"
+}
+
+###
