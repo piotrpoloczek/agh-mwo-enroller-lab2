@@ -1,6 +1,7 @@
 package com.company.enroller.controllers;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,15 @@ public class ParticipantRestController {
 	ParticipantService participantService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<?> getParticipants() {
-		Collection<Participant> participants = participantService.getAll();
-		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
+	public ResponseEntity<?> getParticipants(
+			@RequestParam(required = false) String sortBy,
+			@RequestParam(required = false) String sortOrder,
+			@RequestParam(required = false) String key
+	) {
+		Collection<Participant> participants = participantService.getAll(sortBy, sortOrder, key);
+		return new ResponseEntity<>(participants, HttpStatus.OK);
 	}
+
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getParticipant(@PathVariable("id") String login) {
